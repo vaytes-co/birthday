@@ -61,7 +61,7 @@ export const loveLetter = [
   'Aku mungkin nggak bisa janji semua bakal selalu berjalan sesuai maumu. Tapi satu hal yang harus kamu tahu: aku bakal selalu berusaha ada di sampingmu. Apa pun yang pengin kamu capai, apa pun mimpi yang pengin kamu kejar, aku bakal selalu dukung kamu. Aku pengin jadi orang yang nggak cuma nemenin kamu saat bahagia, tapi juga bisa kamu andelin saat dunia terasa berat—azekkkkk.',
   'Jangan pernah merasa sendirian saat mengejar impianmu, ya. Aku percaya kamu mampu mendapatkan hal-hal baik yang kamu inginkan. Jangan takut mencoba, jangan berhenti bermimpi, dan jangan pernah meragukan dirimu sendiri. Aku bakal selalu bangga dengan setiap proses dan pencapaianmu, sekecil apa pun itu.',
   'Makasih. Aku bersyukur bisa kenal dan sayang sama kamu, juga ngelewatin banyak hal bareng kamu. Semoga di umur 20 ini ada lebih banyak cerita indah, tawa, kesempatan baru, dan kebahagiaan yang datang.',
-  'Selamat ulang tahun, Nell! Tetap jadi Nell yang aku kenal, dengan segala keceriaan, keunikan, dan hal-hal kecil yang bikin kamu istimewa di mataku—azekkk bagian kedua.',
+  'Selamat ulang tahun, Nell! Tetap jadi Nell yang aku kenal, dengan segala keceriaan, keunikan, dan hal-hal kecil yang bikin kamu istimewa di mataku—azekkk part 2.',
   'Semoga hidup selalu baik sama kamu, impianmu jadi kenyataan, dan senyummu nggak pernah hilang.',
   'Aku sayang kamu, dan aku bakal selalu jadi pendukung nomor satumu. ❤️',
   'Gila, bahasa Inggrisku yang diterjemahin ini wkwkwkwk. Selamat ulang tahun, cantiknya akuuu!',
