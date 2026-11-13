@@ -248,7 +248,7 @@ function App() {
       <section className="heart-hero" aria-label={`Hati dari foto-foto ${birthdayGirl}`}>
         <ScatteredElements pieces={scatterPlacements.hero} />
         <header className="archive-nav">
-          <a className="nav-brand" href="#home" aria-label="Kembali ke awal">T.</a>
+          <a className="nav-brand" href="#home" aria-label="Kembali ke awal"></a>
           <nav aria-label="Bagian halaman">
             <a href="#memories">KENANGAN</a>
             <a href="#moments">MOMEN</a>
