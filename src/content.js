@@ -1,4 +1,5 @@
 export const birthdayPin = '1411';
+export const rundownPin = '0714';
 export const birthdayGirl = 'Tiara Cornelia Abinery Pukan';
 export const puzzleImage = '/media/love-IMG-5363.webp';
 export const puzzleImageAspectRatio = 3 / 4;
@@ -65,4 +66,13 @@ export const loveLetter = [
   'Semoga hidup selalu baik sama kamu, impianmu jadi kenyataan, dan senyummu nggak pernah hilang.',
   'Aku sayang kamu, dan aku bakal selalu jadi pendukung nomor satumu. ❤️',
   'Gila, bahasa Inggrisku yang diterjemahin ini wkwkwkwk. Selamat ulang tahun, cantiknya akuuu!',
+];
+
+export const rundownSchedule = [
+  { time: '12:00 PM', title: 'Berangkat jemput kamu', image: '/rundown/Jemput.png', alt: 'Ilustrasi kita naik skuter' },
+  { time: '1:00 PM', title: 'Makan siang', image: '/rundown/makann.png', alt: 'Ilustrasi makanan' },
+  { time: '1:30 PM', title: 'Buka kado', image: '/rundown/Buka-Hadiah.png', alt: 'Ilustrasi hadiah ulang tahun' },
+  { time: '2:00 PM', title: 'Berangkat ke Rita Supermall' },
+  { time: '2:30 PM', title: 'Foto di photobox', image: '/rundown/Photobox.png', alt: 'Ilustrasi kamera photobox' },
+  { time: '3:30 PM', title: 'Pulang', image: '/rundown/pulang.png', alt: 'Ilustrasi rumah' },
 ];

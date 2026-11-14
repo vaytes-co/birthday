@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import {
   birthdayArt,
   birthdayGirl,
@@ -8,6 +9,8 @@ import {
   lovePhotos,
   puzzleImage,
   puzzleImageAspectRatio,
+  rundownPin as itineraryPin,
+  rundownSchedule,
   videos,
 } from './content';
 
@@ -87,6 +90,10 @@ function App() {
   const [unlocked, setUnlocked] = useState(false);
   const [leaving, setLeaving] = useState(false);
   const [letterOpen, setLetterOpen] = useState(false);
+  const [rundownPin, setRundownPin] = useState('');
+  const [rundownPinError, setRundownPinError] = useState('');
+  const [rundownPinOpen, setRundownPinOpen] = useState(false);
+  const [rundownOpen, setRundownOpen] = useState(false);
   const [puzzle, setPuzzle] = useState(createPuzzle);
   const [selectedPiece, setSelectedPiece] = useState(null);
   const [blownCandles, setBlownCandles] = useState([]);
@@ -114,7 +121,7 @@ function App() {
   }, [leaving]);
 
   useEffect(() => {
-    if (!unlocked) return undefined;
+    if (!unlocked || rundownOpen) return undefined;
     window.scrollTo(0, 0);
 
     const items = pageRef.current?.querySelectorAll('.reveal');
@@ -137,7 +144,7 @@ function App() {
     );
     items.forEach((item) => observer.observe(item));
     return () => observer.disconnect();
-  }, [unlocked]);
+  }, [unlocked, rundownOpen]);
 
   function handlePinKey(key) {
     if (key === '↵') {
@@ -175,6 +182,26 @@ function App() {
       setPinError('Coba lagi, sayang.');
       setPin('');
     }
+  }
+
+  function submitRundownPin(event) {
+    event.preventDefault();
+    if (rundownPin === itineraryPin) {
+      setRundownPinError('');
+      setRundownPinOpen(false);
+      setRundownOpen(true);
+      window.scrollTo(0, 0);
+    } else {
+      setRundownPinError('PIN-nya salah, coba lagi ya.');
+      setRundownPin('');
+    }
+  }
+
+  function closeRundown() {
+    setRundownOpen(false);
+    window.requestAnimationFrame(() => {
+      document.getElementById('letter')?.scrollIntoView({ behavior: 'smooth' });
+    });
   }
 
   function swapPieces(first, second) {
@@ -239,6 +266,67 @@ function App() {
           </div>
           <p className="pin-error" aria-live="polite">{pinError}</p>
         </form>
+      </main>
+    );
+  }
+
+  if (rundownOpen) {
+    return (
+      <main className="rundown-page page-enter">
+        <header className="rundown-hero">
+          <button className="rundown-back" onClick={closeRundown} type="button">← Balik ke surat</button>
+          <span className="rundown-eyebrow">MAIN KITA BEROOOOO GELOKK</span>
+          <h1>RUNDOWN RUNDOWN</h1>
+        </header>
+
+        <div className="rundown-content">
+          <section aria-labelledby="outfit-title" className="rundown-outfit">
+            <header className="rundown-section-heading">
+              <span>01 — OUTFIT</span>
+              <h2 id="outfit-title">Pakai baju ini, ya!</h2>
+              <p>Kita pakai warna pink, ya!</p>
+            </header>
+            <div className="outfit-pair">
+              <figure>
+                <img src="/rundown/Outfit-cewe.png" alt="Inspirasi outfit cewek: kaus putih dengan outer pink dan rok pink" />
+                <figcaption>Kamu</figcaption>
+              </figure>
+              <figure>
+                <img src="/rundown/Outfit-cowo.png" alt="Inspirasi outfit cowok: kemeja pink dan celana krem" />
+                <figcaption>Aku</figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <section aria-labelledby="restaurant-title" className="restaurant-card">
+            <span>02 — MAKAN SIANG</span>
+            <h2 id="restaurant-title">Kita makan di mana, yak kira kira kepo gak?</h2>
+            <img src="/rundown/makann.png" alt="" />
+          </section>
+
+          <section aria-labelledby="schedule-title" className="schedule-section">
+            <header className="rundown-section-heading">
+              <span>03 — JADWAL KITA</span>
+              <h2 id="schedule-title">Jadwalnya nih</h2>
+            </header>
+            <ol className="schedule-list">
+              {rundownSchedule.map((item, index) => (
+                <li
+                  className={`schedule-stop${index % 2 ? ' schedule-stop--right' : ''}${item.image ? ' schedule-stop--illustrated' : ''}`}
+                  key={item.time}
+                >
+                  <span className="schedule-marker" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                  <article className="schedule-card">
+                    <span className="schedule-time">{item.time}</span>
+                    <h3>{item.title}</h3>
+                    {item.image && <img src={item.image} alt={item.alt} loading="lazy" />}
+                  </article>
+                </li>
+              ))}
+            </ol>
+          </section>
+          <footer className="rundown-footer">SEUUU SAYANGGKU!! <span aria-hidden="true">♥</span></footer>
+        </div>
       </main>
     );
   }
@@ -438,6 +526,19 @@ function App() {
             {loveLetter.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           </article>
         </div>
+        <button
+          className="rundown-button"
+          onClick={() => {
+            setRundownPin('');
+            setRundownPinError('');
+            setRundownPinOpen(true);
+          }}
+          type="button"
+        >
+          <span aria-hidden="true">✦</span>
+          <span>Jadwal kencan kita</span>
+          <span aria-hidden="true">→</span>
+        </button>
       </section>
 
       <footer className="archive-footer">
@@ -445,6 +546,50 @@ function App() {
         <strong>{birthdayGirl}</strong>
         <a href="#home" aria-label="Kembali ke hati">↑</a>
       </footer>
+
+      {rundownPinOpen && createPortal(
+        <div className="rundown-pin-backdrop" onClick={() => setRundownPinOpen(false)}>
+          <section
+            aria-labelledby="rundown-pin-title"
+            aria-modal="true"
+            className="rundown-pin-dialog"
+            onClick={(event) => event.stopPropagation()}
+            role="dialog"
+          >
+            <button
+              aria-label="Tutup"
+              className="rundown-pin-close"
+              onClick={() => setRundownPinOpen(false)}
+              type="button"
+            >
+              ×
+            </button>
+            <span className="rundown-pin-sparkle" aria-hidden="true">✦</span>
+            <h2 id="rundown-pin-title">Ada plan rahasia dari aku</h2>
+            <p>Masukin kode nuklir lagi tapii ini si susah fix.</p>
+            <form onSubmit={submitRundownPin}>
+              <label className="visually-hidden" htmlFor="rundown-pin">PIN </label>
+              <input
+                autoComplete="one-time-code"
+                id="rundown-pin"
+                inputMode="numeric"
+                maxLength={4}
+                onChange={(event) => {
+                  setRundownPin(event.currentTarget.value.replace(/\D/g, '').slice(0, 4));
+                  setRundownPinError('');
+                }}
+                pattern="[0-9]{4}"
+                placeholder="••••"
+                type="password"
+                value={rundownPin}
+              />
+              <button className="rundown-pin-submit" type="submit">Buka<span aria-hidden="true">→</span></button>
+              <p aria-live="polite" className="rundown-pin-error">{rundownPinError}</p>
+            </form>
+          </section>
+        </div>,
+        document.body,
+      )}
     </main>
   );
 }
