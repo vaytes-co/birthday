@@ -69,10 +69,10 @@ export const loveLetter = [
 ];
 
 export const rundownSchedule = [
-  { time: '12:00 ', title: 'Berangkat jemput kamu', image: '/rundown/Jemput.png', alt: 'Ilustrasi kita naik skuter' },
-  { time: '13:00 PM', title: 'Makan siang', image: '/rundown/makann.png', alt: 'Ilustrasi makanan' },
-  { time: '13:30 PM', title: 'Buka kado', image: '/rundown/Buka-Hadiah.png', alt: 'Ilustrasi hadiah ulang tahun' },
-  { time: '14:00 PM', title: 'Berangkat ke Rita Supermall' },
-  { time: '14:30 PM', title: 'Foto di photobox', image: '/rundown/Photobox.png', alt: 'Ilustrasi kamera photobox' },
-  { time: '15:30 PM', title: 'Pulang', image: '/rundown/pulang.png', alt: 'Ilustrasi rumah' },
+  { time: '12:00', title: 'Berangkat jemput kamu', image: '/rundown/Jemput.png', alt: 'Ilustrasi kita naik skuter' },
+  { time: '13:00', title: 'Makan siang', image: '/rundown/makann.png', alt: 'Ilustrasi makanan' },
+  { time: '13:30', title: 'Buka kado', image: '/rundown/Buka-Hadiah.png', alt: 'Ilustrasi hadiah ulang tahun' },
+  { time: '14:00', title: 'Berangkat ke Rita Supermall' },
+  { time: '14:30', title: 'Foto di photobox', image: '/rundown/Photobox.png', alt: 'Ilustrasi kamera photobox' },
+  { time: '15:30', title: 'Pulang', image: '/rundown/pulang.png', alt: 'Ilustrasi rumah' },
 ];
